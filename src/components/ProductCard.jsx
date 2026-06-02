@@ -124,18 +124,16 @@ export default function ProductCard({ product }) {
         <StarRating rating={product.rating} size={13} />
 
         {/* Price row */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 4 }}>
-          <span
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", marginTop: 4 }}>
+          <div
             style={{
               fontSize: 22,
               fontWeight: 700,
               color: "#0f172a",
-              fontFamily: "'Georgia', 'Times New Roman', serif",
-              letterSpacing: "-0.02em",
             }}
           >
             ${product.price.toFixed(2)}
-          </span>
+          </div>
           <button
             aria-label={`Add ${product.title} to cart`}
             onClick={(e) => e.stopPropagation()}
@@ -144,6 +142,8 @@ export default function ProductCard({ product }) {
               color: "#fff",
               border: "none",
               borderRadius: 10,
+              width: "100%",
+              margin: "4px",
               padding: "7px 14px",
               fontSize: 12,
               fontWeight: 600,
