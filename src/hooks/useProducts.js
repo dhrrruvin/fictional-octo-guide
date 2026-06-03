@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useFilterContext } from "../context/FilterContext";
 
 const BASE_URL = "https://dummyjson.com";
 
@@ -49,7 +50,8 @@ export function useProducts() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  const { selectedCategories, setSelectedCategories } = useFilterContext()
 
   const loadProducts = async () => {
     setLoading(true);

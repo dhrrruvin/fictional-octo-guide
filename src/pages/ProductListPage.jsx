@@ -4,13 +4,17 @@ import ProductGrid from '../components/ProductGrid'
 import Pagination from '../components/Pagination'
 import useFilters from '../hooks/useFilters'
 import FilterSidebar from '../components/FilterSidebar'
+import { useFilterContext } from '../context/FilterContext'
 
 const ProductListingPage = () => {
   const data = useProducts()
 
-  const filters = useFilters(data.products, data.selectedCategories, data.setSelectedCategories);
+  const filters = useFilters(data.products);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const {
+    currentPage,
+    setCurrentPage,
+  } = useFilterContext();
 
   const PAGE_SIZE = 12;
 
@@ -26,15 +30,6 @@ const ProductListingPage = () => {
   const totalPages = Math.ceil(
     filters.filteredProducts.length / PAGE_SIZE
   );
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [
-    data.selectedCategories,
-    filters.selectedBrands,
-    filters.minPrice,
-    filters.maxPrice,
-  ]);
 
   return (
     <div className="min-h-screen bg-slate-50">

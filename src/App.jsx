@@ -1,11 +1,14 @@
 import './App.css'
+import { FilterProvider } from './context/FilterContext'
 import AppRouter from './routes'
 
 function App() {
 
   return (
     <>
-      <AppRouter />
+      <FilterProvider>
+        <AppRouter />
+      </FilterProvider>
     </>
   )
 }

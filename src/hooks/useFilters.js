@@ -1,10 +1,25 @@
 import { useEffect, useMemo, useState } from "react";
+import { useFilterContext } from "../context/FilterContext";
 
-export default function useFilters(products, selectedCategories, setSelectedCategories) {
-  const [selectedBrands, setSelectedBrands] = useState([]);
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+export default function useFilters(products) {
   const [categories, setCategories] = useState([]);
+
+  const {
+    selectedCategories,
+    setSelectedCategories,
+
+    selectedBrands,
+    setSelectedBrands,
+
+    minPrice,
+    setMinPrice,
+
+    maxPrice,
+    setMaxPrice,
+
+    currentPage,
+    setCurrentPage,
+  } = useFilterContext();
 
   const fetchCategories = async () => {
     const response = await fetch("https://dummyjson.com/products/categories");
