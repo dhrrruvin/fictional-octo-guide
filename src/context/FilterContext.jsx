@@ -27,6 +27,14 @@ export function FilterProvider({ children }) {
     maxPrice,
   ]);
 
+  const resetFilters = () => {
+    setSelectedCategories([]);
+    setSelectedBrands([]);
+    setMinPrice("");
+    setMaxPrice("");
+    setCurrentPage(1);
+  };
+
   const value = {
     selectedCategories,
     setSelectedCategories,
@@ -42,6 +50,8 @@ export function FilterProvider({ children }) {
 
     currentPage,
     setCurrentPage,
+
+    resetFilters,
   };
 
   return (

@@ -1,3 +1,5 @@
+import { useFilterContext } from "../context/FilterContext";
+
 export default function FilterSidebar({
   categories,
   brands,
@@ -15,6 +17,15 @@ export default function FilterSidebar({
   toggleCategory,
   toggleBrand,
 }) {
+
+  const { resetFilters } = useFilterContext();
+
+  const hasActiveFilters =
+    selectedCategories.length > 0 ||
+    selectedBrands.length > 0 ||
+    minPrice ||
+    maxPrice;
+
   return (
     <aside
       className="
@@ -27,15 +38,30 @@ export default function FilterSidebar({
         h-fit
       "
     >
-      <h2
-        className="
+      <div className="flex items-center justify-between mb-6">
+        <h2
+          className="
           text-lg
           font-semibold
-          mb-6
         "
-      >
-        Filters
-      </h2>
+        >
+          Filters
+        </h2>
+
+        {hasActiveFilters && (
+          <button
+            onClick={resetFilters}
+            className="
+            text-sm
+            font-medium
+            text-red-500
+            hover:text-red-600
+          "
+          >
+            Reset
+          </button>
+        )}
+      </div>
 
       {/* Category */}
       <div className="mb-6">
